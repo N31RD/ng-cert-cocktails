@@ -1,17 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cocktails-filter',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './cocktails-filter.component.html',
   styleUrl: './cocktails-filter.component.scss'
 })
 export class CocktailsFilterComponent {
-  @Output() searchChange = new EventEmitter<string>();
-
-  protected onInputChange($event: Event) {
-    this.searchChange.emit(($event.target as HTMLInputElement).value);
-  }
-
+  @Input() searchControl: FormControl
 }

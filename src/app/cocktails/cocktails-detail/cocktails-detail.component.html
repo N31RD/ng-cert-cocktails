@@ -1,5 +1,5 @@
 <button routerLink="">← Back</button>
-@if (cocktail) {
+@if (cocktail$ | async; as cocktail) {
     <div class="detail-container">
         <img [src]="cocktail.imageUrl">
         <div class="item-info">

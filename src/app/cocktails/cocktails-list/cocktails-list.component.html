@@ -1,6 +1,6 @@
-<app-cocktails-filter (searchChange)="onSearchChange($event)"/>
+<app-cocktails-filter [searchControl]="searchControl"/>
 <div class="list-container">
-    @for (cocktail of filteredCocktails; track cocktail.id) {
+    @for (cocktail of filteredCocktails$ | async; track cocktail.id) {
         <app-cocktails-list-item [cocktail]="cocktail"/>
     }
 </div>

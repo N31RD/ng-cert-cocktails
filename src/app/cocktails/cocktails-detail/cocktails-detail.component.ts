@@ -5,17 +5,18 @@ import { map, Observable } from 'rxjs';
 import { Cocktail } from '../cocktails.interface';
 import { RouterModule } from '@angular/router';
 import { FavoriteIconDirective } from '../favorite-icon.directive';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cocktails-detail',
   standalone: true,
-  imports: [RouterModule, MatIconModule, FavoriteIconDirective],
+  imports: [RouterModule, MatIconModule, FavoriteIconDirective, AsyncPipe],
   templateUrl: './cocktails-detail.component.html',
   styleUrl: './cocktails-detail.component.scss'
 })
 export class CocktailsDetailComponent implements OnInit {
   @Input() id: string;
-  protected cocktail: Cocktail;
+  protected cocktail$: Observable<Cocktail>;
 
   constructor(private _cocktailsService: CocktailsService){}
 
@@ -24,13 +25,12 @@ export class CocktailsDetailComponent implements OnInit {
   }
 
   private _loadCocktail() {
-    this._cocktailsService.getCocktailById(this.id)
+    this.cocktail$ = this._cocktailsService.getCocktailById(this.id)
       .pipe(
         map(cocktail => ({
           ...cocktail,
           ingredientsString: cocktail.ingredients.join(' | ')
         }))
-      )
-      .subscribe(cocktail => this.cocktail = cocktail);
+      );
   }
 }
