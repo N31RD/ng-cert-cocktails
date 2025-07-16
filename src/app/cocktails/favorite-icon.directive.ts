@@ -16,7 +16,6 @@ export class FavoriteIconDirective {
     this.extractId(this._el.nativeElement.id);
     if (this.id) {
       this.isFavorite = this._favoritesService.isFavorite(this.id);
-      console.log("favorite", this.isFavorite)
     }
   }
 
