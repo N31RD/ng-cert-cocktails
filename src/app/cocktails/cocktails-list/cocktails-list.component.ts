@@ -4,7 +4,6 @@ import { Cocktail } from '../cocktails.interface';
 import { CocktailsListItemComponent } from "./cocktails-list-item/cocktails-list-item.component";
 import { CocktailsFilterComponent } from "./cocktails-filter/cocktails-filter.component";
 import { map } from 'rxjs';
-import { FavoritesService } from '../favorites.service';
 
 @Component({
   selector: 'app-cocktails-list',

@@ -13,13 +13,18 @@ export class FavoriteIconDirective {
   constructor(private _el: ElementRef, private _favoritesService: FavoritesService) {}
 
   ngAfterViewInit() {
+    console.log('coucou');
+    
     this.extractId(this._el.nativeElement.id);
     if (this.id) {
       this.isFavorite = this._favoritesService.isFavorite(this.id);
+      console.log("favorite", this.isFavorite)
     }
   }
 
   @HostListener('click') onClick() {
+    console.log('click');
+    
     this.isFavorite = !this.isFavorite;
     this._favoritesService.toggleFavorite(this.id, this.isFavorite);
   }
@@ -27,6 +32,8 @@ export class FavoriteIconDirective {
   private extractId(id: string) {
     const match = id.match(/star-(\d+)/);
     this.id = match ? match[1] : null;
+    console.log("id", this.id);
+    
   }
 
 }

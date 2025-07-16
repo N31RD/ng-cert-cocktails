@@ -4,12 +4,12 @@ import { CocktailsService } from '../cocktails.service';
 import { map, Observable } from 'rxjs';
 import { Cocktail } from '../cocktails.interface';
 import { RouterModule } from '@angular/router';
-import { FavoritesService } from '../favorites.service';
+import { FavoriteIconDirective } from '../favorite-icon.directive';
 
 @Component({
   selector: 'app-cocktails-detail',
   standalone: true,
-  imports: [RouterModule, MatIconModule],
+  imports: [RouterModule, MatIconModule, FavoriteIconDirective],
   templateUrl: './cocktails-detail.component.html',
   styleUrl: './cocktails-detail.component.scss'
 })
