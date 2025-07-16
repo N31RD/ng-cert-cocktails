@@ -12,7 +12,10 @@
     }
 
     .item-info {
-        margin-left: 10px;
+
+        .favorite-style {
+            color: gold;
+        }
 
         .badge {
         padding: 2px 10px;

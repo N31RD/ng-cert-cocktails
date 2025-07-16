@@ -17,7 +17,7 @@ export class CocktailsListComponent implements OnInit {
   private _cocktails: Cocktail[];
   private _search: string = '';
 
-  constructor(private _cocktailsService: CocktailsService, private _favoritesService: FavoritesService){}
+  constructor(private _cocktailsService: CocktailsService){}
 
   ngOnInit(): void {
     this._loadCocktails();
@@ -40,8 +40,7 @@ export class CocktailsListComponent implements OnInit {
       .pipe(
         map(cocktails => cocktails.map(cocktail => ({
           ...cocktail,
-          ingredientsString: cocktail.ingredients.join(' | '),
-          isFavorite: this._favoritesService.isFavorite(cocktail.id)
+          ingredientsString: cocktail.ingredients.join(' | ')
         })))
       )
       .subscribe(cocktails => this._cocktails = cocktails);

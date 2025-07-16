@@ -5,6 +5,5 @@ export interface Cocktail {
     imageUrl: string,
     instructions: string,
     ingredients: string[],
-    ingredientsString: string,
-    isFavorite: boolean
+    ingredientsString: string
 }

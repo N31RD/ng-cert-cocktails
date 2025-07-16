@@ -32,6 +32,16 @@ export class FavoritesService {
     return this.getFavorites().includes(id);
   }
 
+  toggleFavorite(id: string | null, isFavorite: boolean) {
+    if (id) {
+      if (isFavorite) {
+        this.addToFavorites(id);
+      } else {
+        this.removeFromFavorites(id);
+      }
+    }
+  }
+
   private saveFavorites(favorites: string[]): void {
     localStorage.setItem(this.FAVORITES_KEY, JSON.stringify(favorites));
   }

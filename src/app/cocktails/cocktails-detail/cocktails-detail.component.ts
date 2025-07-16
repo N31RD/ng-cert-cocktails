@@ -17,19 +17,10 @@ export class CocktailsDetailComponent implements OnInit {
   @Input() id: string;
   protected cocktail: Cocktail;
 
-  constructor(private _cocktailsService: CocktailsService, private _favoritesService: FavoritesService){}
+  constructor(private _cocktailsService: CocktailsService){}
 
   ngOnInit(): void {
     this._loadCocktail();
-  }
-
-  toggleFavorite() {
-    this.cocktail = { ...this.cocktail, isFavorite: !this.cocktail.isFavorite}
-    if (this.cocktail.isFavorite) {
-      this._favoritesService.addToFavorites(this.cocktail.id);
-    } else {
-      this._favoritesService.removeFromFavorites(this.cocktail.id);
-    }
   }
 
   private _loadCocktail() {
@@ -37,8 +28,7 @@ export class CocktailsDetailComponent implements OnInit {
       .pipe(
         map(cocktail => ({
           ...cocktail,
-          ingredientsString: cocktail.ingredients.join(' | '),
-          isFavorite: this._favoritesService.isFavorite(cocktail.id)
+          ingredientsString: cocktail.ingredients.join(' | ')
         }))
       )
       .subscribe(cocktail => this.cocktail = cocktail);

@@ -13,15 +13,4 @@ import { FavoritesService } from '../../favorites.service';
 })
 export class CocktailsListItemComponent {
   @Input() cocktail: Cocktail;
-
-  constructor(private _favoritesService: FavoritesService){}
-
-  toggleFavorite() {
-    this.cocktail = { ...this.cocktail, isFavorite: !this.cocktail.isFavorite}
-    if (this.cocktail.isFavorite) {
-      this._favoritesService.addToFavorites(this.cocktail.id);
-    } else {
-      this._favoritesService.removeFromFavorites(this.cocktail.id);
-    }
-  }
 }

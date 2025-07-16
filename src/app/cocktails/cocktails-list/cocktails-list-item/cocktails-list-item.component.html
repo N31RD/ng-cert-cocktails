@@ -2,7 +2,7 @@
     <img [src]="cocktail.imageUrl">
     <div class="item-info">
         <h2  [routerLink]="['/', cocktail.id]">{{ cocktail.name }}</h2>
-        <mat-icon (click)="toggleFavorite()">{{ cocktail.isFavorite ? 'star' : 'star_outline' }}</mat-icon>
+            <mat-icon class="icon-star" [id]="'star-' + cocktail.id" appFavoriteIcon>star</mat-icon>
         @if (cocktail.isAlcoholic) {
         <span class="badge badge__alcoholic">Alcoholic</span>
         } 
