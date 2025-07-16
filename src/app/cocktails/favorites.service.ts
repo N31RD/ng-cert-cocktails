@@ -16,33 +16,29 @@ export class FavoritesService {
 
   addToFavorites(id: string): void {
     const favorites = this.getFavorites();
-    if (!favorites.includes(id)) {
-      favorites.push(id);
-      this.saveFavorites(favorites);
-    }
+    favorites.push(id);
+    this._saveFavorites(favorites);
   }
 
   removeFromFavorites(id: string): void {
     let favorites = this.getFavorites();
     favorites = favorites.filter(fav => fav !== id);
-    this.saveFavorites(favorites);
+    this._saveFavorites(favorites);
   }
 
   isFavorite(id: string): boolean {
     return this.getFavorites().includes(id);
   }
 
-  toggleFavorite(id: string | null, isFavorite: boolean) {
-    if (id) {
-      if (isFavorite) {
-        this.addToFavorites(id);
-      } else {
-        this.removeFromFavorites(id);
-      }
+  toggleFavorite(id: string) {
+    if (this.isFavorite(id)) {
+      this.removeFromFavorites(id);
+    } else {
+      this.addToFavorites(id);
     }
   }
 
-  private saveFavorites(favorites: string[]): void {
+  private _saveFavorites(favorites: string[]): void {
     localStorage.setItem(this.FAVORITES_KEY, JSON.stringify(favorites));
   }
 }

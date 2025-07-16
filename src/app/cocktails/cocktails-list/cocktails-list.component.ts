@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CocktailsService } from '../cocktails.service';
 import { Cocktail } from '../cocktails.interface';
 import { CocktailsListItemComponent } from "./cocktails-list-item/cocktails-list-item.component";
@@ -12,7 +12,8 @@ import { FormControl } from '@angular/forms';
   standalone: true,
   imports: [CocktailsListItemComponent, CocktailsFilterComponent, AsyncPipe],
   templateUrl: './cocktails-list.component.html',
-  styleUrl: './cocktails-list.component.scss'
+  styleUrl: './cocktails-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CocktailsListComponent implements OnInit {
   protected cocktails$: Observable<Cocktail[]>;

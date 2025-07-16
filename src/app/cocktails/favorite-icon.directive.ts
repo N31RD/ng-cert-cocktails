@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, Renderer2 } from '@angular/core';
 import { FavoritesService } from './favorites.service';
 
 @Directive({
@@ -6,27 +6,30 @@ import { FavoritesService } from './favorites.service';
   standalone: true
 })
 export class FavoriteIconDirective {
-  id: string | null;
+  id: string;
 
-  @HostBinding('class.active') isFavorite = false;
-
-  constructor(private _el: ElementRef, private _favoritesService: FavoritesService) {}
+  constructor(private _el: ElementRef, private _favoritesService: FavoritesService, private _renderer: Renderer2) {}
 
   ngAfterViewInit() {
-    this.extractId(this._el.nativeElement.id);
-    if (this.id) {
-      this.isFavorite = this._favoritesService.isFavorite(this.id);
-    }
+    this._extractId(this._el.nativeElement.id);
+    this._toggleActiveClass();
   }
 
   @HostListener('click') onClick() {
-    this.isFavorite = !this.isFavorite;
-    this._favoritesService.toggleFavorite(this.id, this.isFavorite);
+    this._favoritesService.toggleFavorite(this.id);
+    this._toggleActiveClass();
   }
 
-  private extractId(id: string) {
-    const match = id.match(/star-(\d+)/);
-    this.id = match ? match[1] : null;
+  private _extractId(id: string) {
+    this.id = id.replace('star-', '');
+  }
+
+  private _toggleActiveClass() {
+    if (this._favoritesService.isFavorite(this.id)) {
+      this._renderer.addClass(this._el.nativeElement, 'active');
+    } else {
+      this._renderer.removeClass(this._el.nativeElement, 'active');
+    }
   }
 
 }

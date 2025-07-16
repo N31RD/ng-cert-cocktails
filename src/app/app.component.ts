@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CocktailsListComponent } from "./cocktails/cocktails-list/cocktails-list.component";
 
@@ -7,6 +7,7 @@ import { CocktailsListComponent } from "./cocktails/cocktails-list/cocktails-lis
   standalone: true,
   imports: [RouterModule],
   templateUrl: 'app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
 }

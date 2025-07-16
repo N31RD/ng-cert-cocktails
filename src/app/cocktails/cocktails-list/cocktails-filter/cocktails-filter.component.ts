@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './cocktails-filter.component.html',
-  styleUrl: './cocktails-filter.component.scss'
+  styleUrl: './cocktails-filter.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CocktailsFilterComponent {
   @Input() searchControl: FormControl

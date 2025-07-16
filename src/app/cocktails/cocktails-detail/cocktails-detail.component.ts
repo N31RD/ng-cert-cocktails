@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CocktailsService } from '../cocktails.service';
 import { map, Observable } from 'rxjs';
@@ -12,7 +12,8 @@ import { AsyncPipe } from '@angular/common';
   standalone: true,
   imports: [RouterModule, MatIconModule, FavoriteIconDirective, AsyncPipe],
   templateUrl: './cocktails-detail.component.html',
-  styleUrl: './cocktails-detail.component.scss'
+  styleUrl: './cocktails-detail.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CocktailsDetailComponent implements OnInit {
   @Input() id: string;
