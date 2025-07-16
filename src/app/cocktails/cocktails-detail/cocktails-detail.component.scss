@@ -1,11 +1,18 @@
 .detail-container {
     display: flex;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    width: 100%;
     border: 1px solid black;
     border-radius: 10px;
     margin: 10px;
 
     img {
-        height: 265px;
+        max-height: 100%;
+        height: auto;
+        width: auto;
+        flex-shrink: 0;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
     }
