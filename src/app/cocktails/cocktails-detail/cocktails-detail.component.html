@@ -1,0 +1,20 @@
+<button routerLink="">← Back</button>
+@if (cocktail) {
+    <div class="detail-container">
+        <img [src]="cocktail.imageUrl">
+        <div class="item-info">
+            <h2>{{ cocktail.name }}</h2>
+            <mat-icon (click)="toggleFavorite()">{{ cocktail.isFavorite ? 'star' : 'star_outline' }}</mat-icon>
+            @if (cocktail.isAlcoholic) {
+            <p><strong>Type : </strong><span class="badge badge__alcoholic">Alcoholic</span></p>
+            } 
+            @else {
+            <p><strong>Type : </strong><span class=" badge badge__non-alcoholic">Non alcoholic</span></p>
+            }
+            <p><strong>Ingredients : </strong>{{ cocktail.ingredientsString }}</p>
+            <p><strong>Instructions : </strong>{{ cocktail.instructions }}</p>
+        </div>
+</div>
+} @else {
+    <h2>No cocktail with a matching id has been found</h2>
+}

@@ -1,0 +1,6 @@
+<app-cocktails-filter (searchChange)="onSearchChange($event)"/>
+<div class="list-container">
+    @for (cocktail of filteredCocktails; track cocktail.id) {
+        <app-cocktails-list-item [cocktail]="cocktail"/>
+    }
+</div>

@@ -1,0 +1,14 @@
+<div class="item-container">
+    <img [src]="cocktail.imageUrl">
+    <div class="item-info">
+        <h2  [routerLink]="['/', cocktail.id]">{{ cocktail.name }}</h2>
+        <mat-icon (click)="toggleFavorite()">{{ cocktail.isFavorite ? 'star' : 'star_outline' }}</mat-icon>
+        @if (cocktail.isAlcoholic) {
+        <span class="badge badge__alcoholic">Alcoholic</span>
+        } 
+        @else {
+        <span class=" badge badge__non-alcoholic">Non alcoholic</span>
+        }
+        <p>{{ cocktail.ingredientsString }}</p>
+    </div>
+</div>
